@@ -1,14 +1,14 @@
 var compChoices = [
-    "ironman",
+    "iron man",
     "hulk",
     "thor",
-    "captainamerica",
+    "captain america",
     "hawkeye",
-    "blackwidow",
-    "spiderman",
-    "antman",
-    "blackpanther",
-    "doctorstrange"
+    "black widow",
+    "spider-man",
+    "ant-man",
+    "black panther",
+    "doctor strange"
 ];
 var goodGuess = [];
 var badGuess = [];
@@ -27,7 +27,17 @@ function setWord() {
     secretword = [];
     remainingGuesses = 10;
     for (var i=0; i < compGuess.length; i++) {
+        if (compGuess[i] == '-') {
+            secretword[i] = '-';
+            remaining--;
+        }
+        else if (compGuess[i] == ' ') {
+            secretword[i] = '\xA0';
+            remaining--;
+        }
+        else {
         secretword[i] = '_';
+        }
     }
 }
 
