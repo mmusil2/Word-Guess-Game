@@ -5,11 +5,10 @@ var compChoices = [
     "captainamerica",
     "hawkeye",
     "blackwidow",
-    "loki",
     "spiderman",
     "antman",
     "blackpanther",
-    "drstrange"
+    "doctorstrange"
 ];
 var goodGuess = [];
 var badGuess = [];
@@ -45,12 +44,12 @@ document.onkeyup = function(event) {
 
     // checks if letter was already guessed
     if (goodGuess.indexOf(userGuess) == -1 && badGuess.indexOf(userGuess) == -1) {
-        // ends word if guesses run out
+        // ends current word if guesses run out
         if (remainingGuesses == 0){
             setWord();
             updateWord();
         }
-        // ends word if guessed correctly
+        // ends current word if guessed correctly
         else if (remaining == 0) {
             setWord();
             updateWord();
@@ -62,8 +61,8 @@ document.onkeyup = function(event) {
                 badGuess.push(userGuess);
                 remainingGuesses--;
             }
-
-            // loop for good guesses
+            // loop to check if guess is in computer's word then
+            // push good guess to secret word in same index
             for (var j = 0; j < compGuess.length; j++) {
                 if (compGuess[j] === userGuess) {
                     secretword[j] = userGuess;
