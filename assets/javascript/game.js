@@ -22,7 +22,7 @@ var compChoices = [
 ];
 var goodGuess = [];
 var badGuess = [];
-var compGuess = [];
+var compword = [];
 var secretword = [];
 var remaining = 0;
 var remainingGuesses = 10;
@@ -32,18 +32,20 @@ var solvedword;
 // sets new word and resets all vars
 function setWord() {
     random = Math.floor(Math.random() * compChoices.length)
-    compGuess = compChoices[random].name;
-    remaining = compGuess.length;
+    compword = compChoices[random].name;
+    remaining = compword.length;
     goodGuess = [];
     badGuess = [];
     secretword = [];
     remainingGuesses = 10;
-    for (var i=0; i < compGuess.length; i++) {
-        if (compGuess[i] == '-') {
+    // sets secret word to underscores (_) equal to length of computer's choice
+    // checks for dashes (-) and spaces ( ) and replaces at same index
+    for (var i=0; i < compword.length; i++) {
+        if (compword[i] == '-') {
             secretword[i] = '-';
             remaining--;
         }
-        else if (compGuess[i] == ' ') {
+        else if (compword[i] == ' ') {
             secretword[i] = '\xA0';
             remaining--;
         }
@@ -81,7 +83,7 @@ document.onkeyup = function(event) {
         }
         // ends current word if guessed correctly
         else if (remaining == 0) {
-            solvedword = compGuess;
+            solvedword = compword;
             compImg = compChoices[random].link;
             wins++;
             setWord();
@@ -91,14 +93,14 @@ document.onkeyup = function(event) {
         }
         else {
             // if guess is not in word
-            if (compGuess.indexOf(userGuess) == -1) {
+            if (compword.indexOf(userGuess) == -1) {
                 badGuess.push(userGuess);
                 remainingGuesses--;
             }
             // loop to check if guess is in computer's word then
             // push good guess to secret word in same index
-            for (var j = 0; j < compGuess.length; j++) {
-                if (compGuess[j] === userGuess) {
+            for (var j = 0; j < compword.length; j++) {
+                if (compword[j] === userGuess) {
                     secretword[j] = userGuess;
                     goodGuess.push(userGuess);
                     remaining--;
@@ -110,7 +112,7 @@ document.onkeyup = function(event) {
     
 console.log(remaining);
 console.log(userGuess);
-console.log(compGuess);
+console.log(compword);
 console.log(goodGuess);
 console.log(badGuess);
 console.log(secretword);
