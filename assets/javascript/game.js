@@ -28,6 +28,7 @@ var remaining = 0;
 var remainingGuesses = 10;
 var wins = 0;
 var solvedword;
+var compImg = 'avengers.png';
 
 // sets new word and resets all vars
 function setWord() {
@@ -55,6 +56,12 @@ function setWord() {
     }
 }
 
+//makes initial page
+function makePage() {
+    document.querySelector("#remainingGuesses").innerHTML = remainingGuesses;
+    document.getElementById("solvedimg").src='assets/images/' + compImg;
+}
+
 // updates html page
 function updateWord() {
     document.querySelector("#secretword").innerHTML = secretword.join(" ");
@@ -68,8 +75,8 @@ function updateSolved() {
     document.getElementById("solvedimg").src='assets/images/' + compImg;
 }
 
+makePage();
 setWord();
-updateWord();
 
 document.onkeyup = function(event) {
     var userGuess = event.key.toUpperCase();
